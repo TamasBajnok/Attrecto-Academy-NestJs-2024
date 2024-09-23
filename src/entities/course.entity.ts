@@ -2,9 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UserEntity } from './user.entity';
 
 @Entity()
 export class CourseEntity {
@@ -14,12 +16,12 @@ export class CourseEntity {
   @Column()
   title: string;
 
-  @Column()
-  author: string;
+  @OneToOne(() => UserEntity)
+  author: UserEntity[];
 
   @Column()
   description: string;
-
+  
   @Column()
   url: string;
 
@@ -27,5 +29,5 @@ export class CourseEntity {
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'datetime' })
-  updatedAt: Date;
+  updateAt: Date;
 }
